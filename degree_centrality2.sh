@@ -27,9 +27,9 @@ do
     window_array+=( $num_start..$num_end )
 done
 
-for perp in $perps
+for part in $participants
 do
-    cd "$data_dir"/"$perp"/
+    cd "$data_dir"/"$part"/
     mkdir ./community_map
     mkdir ./map_back_nifti
     mkdir ./coreper
@@ -55,7 +55,6 @@ do
     #run OSLOM community detection and matlab code to re-format outputs
     ./oslom_undir -cp 0 -t 0.001 -uw -singlet -fast -f new_media_windowx_5mm.txt
     echo wx_ | matlab -nosplash -nodesktop -nodisplay -nojvm -singleCompThread -r CD_OSLOM
-    scp -r new_media_windowx_5mm.txt_oslo_files/ ucbts00@live.rd.ucl.ac.uk:/mnt/gpfs/live/ritd-ag-project-rd00dq-jiski83/$movie/$perp/
 
     titles="BC CC EC DN voxel_tot_centr"
     while [ ! -f ./map_back_nifti/voxel_tot_centr_wx_5mm.txt ]
@@ -73,8 +72,6 @@ do
       -mask ./"$mask_name".nii.gz \
       -datum float \
       -ijk ./map_back_nifti/"$title"_wx_5mm.txt
-      scp ./map_back_nifti/"$title"_wx_5mm.txt ucbts00@live.rd.ucl.ac.uk:/mnt/gpfs/live/ritd-ag-project-rd00dq-jiski83/$movie/$perp/map_back_nifti/
-      scp ./map_back_nifti/"$title"_wx.nii.gz ucbts00@live.rd.ucl.ac.uk:/mnt/gpfs/live/ritd-ag-project-rd00dq-jiski83/$movie/$perp/map_back_nifti/
       echo *****************"created file: " "$title"_wx.nii.gz
     done
     
@@ -90,17 +87,6 @@ do
       -mask ./"$mask_name".nii.gz \
       -datum float \
       -ijk ./community_map/community_structure_wx_5mm.txt
-    scp  ./community_map/community_structure_wx.nii.gz ucbts00@live.rd.ucl.ac.uk:/mnt/gpfs/live/ritd-ag-project-rd00dq-jiski83/$movie/$perp/community_map/
     echo *****************"created file: " community_structure_wx.nii.gz
-    rm ./community_map/community_structure_wx_5mm.txt
 done
-rm media_windowx_5mm.txt & rm new_media_windowx_5mm.txt
-rm matrix*mat & rm coordinates*mat
-titles="BC CC EC DN voxel_tot_centr"
-for title in $titles
-do
-   rm ./map_back_nifti/"$title"_wx.nii.gz
-   rm ./map_back_nifti/"$title"_wx_5mm.txt
-done
-rm media_all_tshift_despike_reg_al_mni_mask_blur"$functional_blur_amount"_"$file_type"_degreecentrality_wx.nii.gz
-rm -rf new_media_windowx_5mm.txt_oslo_files/
+
