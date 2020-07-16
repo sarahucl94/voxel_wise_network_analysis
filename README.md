@@ -1,6 +1,6 @@
 # Voxel-wise brain network analysis pipeline
 
-This repo contains code for analysis of large (~17,000 voxels) brain networks, as well as ROI-based network analysis. It performs a sliding-window analysis of voxel-wise connectivity.
+This repo contains code for analysis of large (~17,000 voxels) brain networks. It performs a sliding-window analysis of voxel-wise connectivity.
 Thee code was implemented on our lab's fMRI dataset, that can be found at the following: https://openneuro.org/dashboard/datasets
 
 The pipeline starts from 5mm^3 resampled nifti (nii.gz) files. If you want info on preprocessing of brain data, please refer to my other repo: https://github.com/lab-lab/nndb
