@@ -16,7 +16,7 @@ You'll need to install the [Brain Connectivity Toolbox](https://sites.google.com
 
 ### NB: The python code referenced in the `degree_centrality2.sh` script cannot be made available because it is being used for publication soon - please refer back in few months for availability of the code!
 
-Ideally this code should be run on computing clusters if using large volumes of data (eg. naturalistic fMRI datasets). If you have N sliding windows, your HCP submission script should look something like this:
+Ideally this code should be run on computing clusters if using large volumes of data (eg. naturalistic fMRI datasets). If you have N sliding windows, your HCP submission script should contain a line like this if you want array-job submissions:
 
 ```
 #$ -t 1-N
