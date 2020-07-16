@@ -8,7 +8,7 @@ The pipeline starts from 5mm^3 resampled nifti (nii.gz) files. If you want info 
 Requirements:
 - MATLAB >= 2018a
 - Python >= 3.4
-- [AFNI software](software: https://afni.nimh.nih.gov/pub/dist/doc/htmldoc/background_install/install_instructs/index.html)
+- [AFNI software](https://afni.nimh.nih.gov/pub/dist/doc/htmldoc/background_install/install_instructs/index.html)
 
 
 You'll need to install the [Brain Connectivity Toolbox](https://sites.google.com/site/bctnet/) in MATLAB for ceentrality measures, and download the OSLOM algorithm for community detection from
