@@ -1,0 +1,27 @@
+#!/bin/bash
+#$ -l mem=2G
+
+#$ -l h_rt=0:15:0
+#$ -S /bin/bash
+#$ -pe smp 8
+
+#$ -N cp_180303JM_2
+#$ -wd /home/ucbts00/Scratch
+#$ -t 1-542
+
+module load python3
+module load gsl/2.4/gnu-4.9.2
+module load afni
+module load xorg-utils/X11R7.7
+module load matlab/full/r2018b/9.5
+
+
+cd /home/ucbts00/Scratch/Centrality_scripts/180303JM
+
+nums="$SGE_TASK_ID"
+
+for win in $nums
+do
+   ar=$(($win - 1))
+   sed -e "s/wx_/w"$win"_/g" -e "s/_wx/_w"$win"/g" -e "46s/0/"$ar"/g" -e "47s/0/"$ar"/g" coreper_analysis.sh| sh
+done
