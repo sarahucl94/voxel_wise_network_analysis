@@ -16,7 +16,7 @@ You'll need to download the OSLOM algorithm for community detection from
 Ideally this code should be run on computing clusters if using large volumes of data (eg. naturalistic fMRI datasets). 
 The main code is in `analysis.sh` that calls all others. The centrality and adjacency matrix are obtained from `brain_network_centrality.m`. OSLOM can be run in parallel for faster results, in which case you'll need the `compare_consecutive_comms.m` script to relabel consecutive windows, since OSLOM will start the partitioning in a different way every time. You can also run OSLOM using info from a previous timepoint, but this means running the code sequentially.
 
-
+If you are thinking of running analyses on clusters, feel free to have a look at `submission_script.txt` for ideas on how to run a similar analysis.
 ROI-based analysis scripts coming VERY SOON....
 
 
