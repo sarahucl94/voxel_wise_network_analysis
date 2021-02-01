@@ -4,7 +4,7 @@
 # Dynamic functional connectivity with 3dDegreeCentrality
 ################################################################################
 # Author: Sarah Aliko
-# Last modified: 26/01/2021
+# Last modified: 27/01/2021
 
 source ./variables.sh
 
@@ -44,7 +44,7 @@ echo ${window_array["0"]}
 
 # run matlab on the output txt file generated
 rm $filename
-echo wx_ | matlab -nosplash -nodesktop -nodisplay -nojvm -r matlab_brain_analysis2
+echo wx_ | matlab -nosplash -nodesktop -nodisplay -nojvm -r brain_network_centrality
 
 # run test_coreper algorithm
 while [ ! -f ./matrix_wx_.mat ]
@@ -54,10 +54,10 @@ done
 
 python3 run.py _wx
 rm ./"$textname"
-rsync -avz --remove-source-files ./matrix_wx_.mat ucbts00@live.rd.ucl.ac.uk:/mnt/gpfs/live/ritd-ag-project-rd00dq-jiski83/$movie/$perp/
-rsync -avz --remove-source-files ./coordinates_wx_.mat ucbts00@live.rd.ucl.ac.uk:/mnt/gpfs/live/ritd-ag-project-rd00dq-jiski83/$movie/$perp/    
-rsync -avz --remove-source-files ./coreper/corness_wx.csv ucbts00@live.rd.ucl.ac.uk:/mnt/gpfs/live/ritd-ag-project-rd00dq-jiski83/$movie/$perp/coreper/
-rsync -avz --remove-source-files ./coreper/pairid_wx.csv ucbts00@live.rd.ucl.ac.uk:/mnt/gpfs/live/ritd-ag-project-rd00dq-jiski83/$movie/$perp/coreper/
+rsync -avz --remove-source-files ./matrix_wx_.mat $remote/$movie/$perp/
+rsync -avz --remove-source-files ./coordinates_wx_.mat $remote/$movie/$perp/    
+rsync -avz --remove-source-files ./coreper/corness_wx.csv $remote/$movie/$perp/coreper/
+rsync -avz --remove-source-files ./coreper/pairid_wx.csv $remote/$movie/$perp/coreper/
 
 titles="B C E D voxel_avg_centr"
 while [ ! -f ./centrality/voxel_avg_centr_wx_5mm.txt ]
@@ -75,8 +75,8 @@ do
    -mask ./"$mask_name"_5mm.nii.gz \
    -datum float \
    -ijk ./centrality/"$title"_wx_5mm.txt
-   rsync -avz --remove-source-files ./centrality/"$title"_wx_5mm.txt ucbts00@live.rd.ucl.ac.uk:/mnt/gpfs/live/ritd-ag-project-rd00dq-jiski83/$movie/$perp/centrality/
-   rsync -avz --remove-source-files ./centrality/"$title"_wx.nii.gz ucbts00@live.rd.ucl.ac.uk:/mnt/gpfs/live/ritd-ag-project-rd00dq-jiski83/$movie/$perp/centrality/
+   rsync -avz --remove-source-files ./centrality/"$title"_wx_5mm.txt $remote/$movie/$perp/centrality/
+   rsync -avz --remove-source-files ./centrality/"$title"_wx.nii.gz $remote/$movie/$perp/centrality/
    echo *****************"created file: " "$title"_wx.nii.gz
 done      
 
