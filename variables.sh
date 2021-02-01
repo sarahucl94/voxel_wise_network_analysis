@@ -18,14 +18,14 @@ movie_length="5470"
 # Directories
 #############################
 
-base_data_dir="/home/ucbts00/Scratch"
+base_data_dir="/path/to/data"
 data_dir="$base_data_dir"/"$movie"
 
 #############################
 # Participant(s)
 #############################
 
-perp="180303JM"
+perp="sub1"
 
 #############################
 # Degree centrality analysis
@@ -36,14 +36,13 @@ perp="180303JM"
 mask_name="anatomical_mask"
 
 # Correlation window size for 3dDegreeCentrality
-# Literature apparently suggests 40-60 seconds optimal
-# Note that movie_length must be set above as this is used to determine the last possible 60 window (an alternate would be to have ever decreasing 
-#windows until the end...)
+# Literature suggests 40-60 seconds optimal
+# overlap is 10sec
 # For 60 seconds:
 window_start="0"
 window_end="59"
 step_size="10"
 
-# Polort and R threshold values for 3dDegreeCentrality
+# Polort and sparsity threshold values for 3dDegreeCentrality
 polort_value="-1"
 thresh_value="10"
