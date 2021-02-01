@@ -9,7 +9,7 @@ sleep 6
 #$ -l tmpfs=5G
 #$ -N sa_sub1
 #$ -pe smp 4
-#$ -wd /home/ucbts00/Scratch
+#$ -wd $dir
 #$ -t 1-542
 
 cd $TMPDIR
@@ -23,7 +23,7 @@ module load gsl/2.4/gnu-4.9.2
 module load afni/20181011
 module load python3/3.7
 
-cd /home/ucbts00/Scratch/Centrality_scripts/sub1
+cd /$dir/sub1
 nums="$SGE_TASK_ID"
 
 
