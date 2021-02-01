@@ -8,14 +8,14 @@ coms_A1 =mat2cell(A1_2(:,1)',1, histcounts(findgroups(A1_2(:,2)'))); % partition
 coms_A2 =mat2cell(A2_2(:,1)',1, histcounts(findgroups(A2_2(:,2)')));
 
 % go through each community group and measure jaccard index
-% jaccard over 50% means same community here
+% jaccard over 50% means same community here (this is arbitrary)
 
 labels_T1 = length(unique(A1(:,2)));
 
 communities = [A1 zeros(size(A1,1),1)];
 for i = 1:size(coms_A1,2)
    for j = 1:size(coms_A2,2)
-      if length(intersect(coms_A1{1,i},coms_A2{1,j}))/length(union(coms_A1{1,i},coms_A2{1,j}))*100 >= 10
+      if length(intersect(coms_A1{1,i},coms_A2{1,j}))/length(union(coms_A1{1,i},coms_A2{1,j}))*100 >= 50
           added = setdiff(coms_A2{1,j}, coms_A1{1,i}); % obtain nodes that were added to a community in T2
           T2_nodes = [intersect(coms_A1{1,i},coms_A2{1,j}) added]; % nodes in T2 from same group from T1
           same_node_id = T2_nodes(1); % node that didn't change assignment
